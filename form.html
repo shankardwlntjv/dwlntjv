@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style>
 
 * {
@@ -81,7 +82,7 @@ input[type=submit]:hover {
     <p>Resize the browser window to see the effect. When the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other.</p>
     
     <div class="container">
-      <form action="POST">
+      <form action="POST" autocomplete="off" name="google-sheet">
       
           <div class="row">
           <div class="col-25">
@@ -174,7 +175,23 @@ input[type=submit]:hover {
       </div>
       </form>
     </div>
+   
     
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbxKIH2y0Bq1js4RTSREE-VlcFdHdekI4XIx0DqKO9Wk3ze1o4E7USGVACxSAKh7fH8/exec'
+         const form = document.forms['google-sheet']
+       
+         form.addEventListener('submit', e => {
+           e.preventDefault()
+           fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+             .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
+             .catch(error => console.error('Error!', error.message))
+         })
+       </script>
+ 
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ 
     
 
 
