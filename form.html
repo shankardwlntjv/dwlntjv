@@ -206,19 +206,32 @@ a:hover {
         <input type="submit" value="Submit" name="submit">
       </div>
       </form>
+     <span id="msg">"msg"</span>   
+        
     </div>
    
     
     <script>
       const scriptURL = 'https://script.google.com/macros/s/AKfycbxKIH2y0Bq1js4RTSREE-VlcFdHdekI4XIx0DqKO9Wk3ze1o4E7USGVACxSAKh7fH8/exec'
          const form = document.forms['google-sheet']
-       
+       const msg = document.getElementById("msg")
+        
          form.addEventListener('submit', e => {
            e.preventDefault()
            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-             .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
+             .then(response => {
+             msg.innerHTML= "Thanks for Contacting us..! We Will Contact You Soon..."
+             setTimeout(function(){
+              msg.innerHTML= ""
+             },5000)
+             form.reset()
+             })
              .catch(error => console.error('Error!', error.message))
          })
+      
+         
+         
+         
        </script>
  
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
